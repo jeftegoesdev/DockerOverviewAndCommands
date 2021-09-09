@@ -1,4 +1,4 @@
-# Commands
+# Commands Docker
 - All informations about docker in the machine
   - docker info
 - Show the Docker version information
@@ -17,12 +17,24 @@
 - Remove one or more containers
   - docker image rm `<container_name>` # Example docker image rm hello-world:latest
   - docker rmi `<image_name>` or `<image_id>` # Example docker rmi hello-world:latest
+- Fetch the logs of a container
+  - docker logs -f `<image_name>`
+- Run a command in a running container
+  - docker exec -ti `<container_name>` bash # -ti --interactive and --tty
 
-# Docker compose model
+# Commands Docker Compose
+- All informations about docker compose in the machine
+  - docker-compose version
+- Create and start containers, use docker-compose.yml
+  - docker-compose up -d
+- Stop all containers
+  - docker-compose stop
+
+# Docker Compose template
 ```
 version: '3'
 services:
-  jenkings:
+  my_service:
     container_name: CONTAINER_NAME
     image: IMAGE_NAME
     ports:
@@ -31,7 +43,23 @@ services:
       - "$PWD/HOME:/VAR/PATH_HERE"
     networks:
       - net
-network:
+networks:
+  net: 
+```
+## Example Docker Compose file (Windows)
+```
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - "D:/Compose:/var/lib/docker"
+    networks:
+      - net
+networks:
   net: 
 ```
 
