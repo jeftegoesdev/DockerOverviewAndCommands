@@ -3,8 +3,11 @@
   - docker info
 - Show the Docker version information
   - docker --version
-- Show running containers
+- Show running containers (Process status)
   - docker ps
+  - docker ps -a # Show all
+  - docker container ls -a
+  - docker container ps -a
 - List all images in local repository
   - docker images
 - Pull (download) an image or a repository from a registry
@@ -14,9 +17,10 @@
   - docker run -d `<image_name>` # Run container in background and print container ID 
 - Rum a command to stop a container
   - docker stop `<container_name>`
-- Remove one or more containers
-  - docker image rm `<container_name>` # Example docker image rm hello-world:latest
-  - docker rmi `<image_name>` or `<image_id>` # Example docker rmi hello-world:latest
+- Remove image
+  - docker image rm `<image_name>` or `<image_id>` # Example docker image rm hello-world:latest
+- Remove container
+  - docker container rm `<container_name>` or `<container_id>`
 - Fetch the logs of a container
   - docker logs -f `<image_name>`
 - Run a command in a running container
