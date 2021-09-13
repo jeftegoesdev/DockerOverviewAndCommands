@@ -21,6 +21,8 @@
   - docker logs -f `<image_name>`
 - Run a command in a running container
   - docker exec -ti `<container_name>` bash # -ti --interactive and --tty
+- Copy files/folders between a container and the local filesystem
+  - docker cp `<file_name>` `<container_name>`:`<path>`/`<file_name>` # Example: docker cp script.sh myContainer:/tmp/script.sh
 
 # Commands Docker Compose
 - All informations about docker compose in the machine
@@ -41,22 +43,6 @@ services:
       - "8080:8080"
     volumes:
       - "$PWD/HOME:/VAR/PATH_HERE"
-    networks:
-      - net
-networks:
-  net: 
-```
-## Example Docker Compose file (Windows)
-```
-version: '3'
-services:
-  jenkins:
-    container_name: jenkins
-    image: jenkins/jenkins
-    ports:
-      - "8080:8080"
-    volumes:
-      - "D:/Compose:/var/lib/docker"
     networks:
       - net
 networks:
