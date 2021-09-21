@@ -25,8 +25,11 @@
   - docker logs -f `<image_name>`
 - Run a command in a running container
   - docker exec -ti `<container_name>` bash # -ti --interactive and --tty
+  - docker exec -it -u root `<container_name>`
 - Copy files/folders between a container and the local filesystem
   - docker cp `<file_name>` `<container_name>`:`<path>`/`<file_name>` # Example: docker cp script.sh myContainer:/tmp/script.sh
+- Build Dockerfile
+  - docker build .
 
 # Commands Docker Compose
 - All informations about docker compose in the machine
@@ -35,6 +38,8 @@
   - docker-compose up -d
 - Stop all containers
   - docker-compose stop
+- Docker 
+  - compose-build
 
 # Docker Compose template
 ```
