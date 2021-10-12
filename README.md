@@ -1,4 +1,5 @@
-# Commands Docker
+# Docker
+## Docker commands
 - All informations about docker in the machine
   - docker info
 - Show the Docker version information
@@ -30,18 +31,23 @@
   - docker cp `<file_name>` `<container_name>`:`<path>`/`<file_name>` # Example: docker cp script.sh myContainer:/tmp/script.sh
 - Build Dockerfile
   - docker build .
+## Dockerfile template
 
-# Commands Docker Compose
+
+# Docker compose
+## Commands Docker Compose
 - All informations about docker compose in the machine
   - docker-compose version
-- Create and start containers, use docker-compose.yml
+- Create/Recreate and start containers, use docker-compose.yml
   - docker-compose up -d
+- Start all containers
+  - docker-compose start
 - Stop all containers
   - docker-compose stop
 - Docker 
   - compose-build
 
-# Docker Compose template
+## Docker Compose template
 ```
 version: '3'
 services:
@@ -69,3 +75,7 @@ networks:
 
 ## Jenkins image
 - docker pull jenkins/jenkins
+
+## Gitlab image
+- sudo docker exec -it gitlab_dev grep 'Password:' /etc/gitlab/initial_root_password
+- sudo gitlab-rake "gitlab:password:reset[root]"
