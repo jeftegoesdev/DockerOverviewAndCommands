@@ -26,7 +26,7 @@
   - docker logs -f `<image_name>`
 - Run a command in a running container
   - docker exec -ti `<container_name>` bash # -ti --interactive and --tty
-  - docker exec -it -u root `<container_name>`
+  - docker exec -it -u root `<container_name>` bash
 - Copy files/folders between a container and the local filesystem
   - docker cp `<file_name>` `<container_name>`:`<path>`/`<file_name>` # Example: docker cp script.sh myContainer:/tmp/script.sh
 - Build Dockerfile
@@ -40,12 +40,21 @@
   - docker-compose version
 - Create/Recreate and start containers, use docker-compose.yml
   - docker-compose up -d
-- Start all containers
+- Build or rebuild services
+  - docker-compose build
+- Starts existing containers for a service.
   - docker-compose start
 - Stop all containers
   - docker-compose stop
 - Docker 
   - compose-build
+- Remove all containers and images
+  ```
+  docker-compose down
+  docker rm -f $(docker ps -a -q)
+  docker volume rm $(docker volume ls -q)
+  docker rmi -f $(docker images -a -q)
+  ```
 
 ## Docker Compose template
 ```
