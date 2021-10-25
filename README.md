@@ -76,7 +76,9 @@ networks:
 # Images
 ## RabbitMQ image (http://localhost:15672/)
 - docker pull rabbitmq:3-management
-- docker run -d -p 15672:15672 -p 5672:5672 --name rabbit-test rabbitmq:3-management
+- docker run -d -p 15672:15672 -p 5672:5672 --name rabbit_dev rabbitmq:3-management
+- docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq_dev rabbitmq:3.9-management
+- Default user and password: guest/guest
 
 ## MsSql image (localhost,1445)
 - docker pull mcr.microsoft.com/mssql/server:2019-latest
@@ -84,6 +86,7 @@ networks:
 
 ## Jenkins image
 - docker pull jenkins/jenkins
+- docker run -p 8080:8080 jenkins/jenkins -- name jenkins_dev
 
 ## Gitlab image
 - sudo docker exec -it gitlab_dev grep 'Password:' /etc/gitlab/initial_root_password
