@@ -2,7 +2,7 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Whats is containers and docker?](#1-whats-is-containers-and-docker)
+- [1. Whats is docker anb containers?](#1-whats-is-docker-anb-containers)
   - [1.1. Docker](#11-docker)
     - [1.1.1. Advantages of Docker](#111-advantages-of-docker)
   - [1.2. Container](#12-container)
@@ -18,9 +18,10 @@
   - [7.2. MsSql image (localhost,1445)](#72-mssql-image-localhost1445)
   - [7.3. Jenkins image](#73-jenkins-image)
   - [7.4. Gitlab image](#74-gitlab-image)
+  - [MongoDb image](#mongodb-image)
 - [8. Extras](#8-extras)
 
-## 1. Whats is containers and docker?
+## 1. Whats is docker anb containers?
 
 ### 1.1. Docker
 
@@ -167,6 +168,12 @@ networks:
 
 - sudo docker exec -it gitlab_dev grep 'Password:' /etc/gitlab/initial_root_password
 - sudo gitlab-rake "gitlab:password:reset[root]"
+
+### MongoDb image
+
+- docker pull mongo
+- docker run -d -p 27017:27017 --name mongo_dev mongo
+- docker exec -it mongo_dev bash
 
 ## 8. Extras
 
