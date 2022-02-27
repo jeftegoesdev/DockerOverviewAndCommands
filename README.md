@@ -1,27 +1,52 @@
 # Docker commands and overview <!-- omit in toc -->
+
 ## Contents <!-- omit in toc -->
 
-- [1. Instalation in Windows 10](#1-instalation-in-windows-10)
-- [2. Docker commands](#2-docker-commands)
-- [3. Dockerfile structure](#3-dockerfile-structure)
-- [4. Docker compose](#4-docker-compose)
-  - [4.1. Commands Docker Compose](#41-commands-docker-compose)
-  - [4.2. Docker Compose template](#42-docker-compose-template)
-- [5. Access Docker using REST API or Expose docker remotely](#5-access-docker-using-rest-api-or-expose-docker-remotely)
-- [6. Docker images](#6-docker-images)
-  - [6.1. RabbitMQ image (http://localhost:15672/)](#61-rabbitmq-image-httplocalhost15672)
-  - [6.2. MsSql image (localhost,1445)](#62-mssql-image-localhost1445)
-  - [6.3. Jenkins image](#63-jenkins-image)
-  - [6.4. Gitlab image](#64-gitlab-image)
-- [7. Extras](#7-extras)
+- [1. Whats is containers and docker?](#1-whats-is-containers-and-docker)
+  - [1.1. Docker](#11-docker)
+    - [1.1.1. Advantages of Docker](#111-advantages-of-docker)
+  - [1.2. Container](#12-container)
+- [2. Instalation in Windows 10](#2-instalation-in-windows-10)
+- [3. Docker commands](#3-docker-commands)
+- [4. Dockerfile structure](#4-dockerfile-structure)
+- [5. Docker compose](#5-docker-compose)
+  - [5.1. Commands Docker Compose](#51-commands-docker-compose)
+  - [5.2. Docker Compose template](#52-docker-compose-template)
+- [6. Access Docker using REST API or Expose docker remotely](#6-access-docker-using-rest-api-or-expose-docker-remotely)
+- [7. Docker images](#7-docker-images)
+  - [7.1. RabbitMQ image (http://localhost:15672/)](#71-rabbitmq-image-httplocalhost15672)
+  - [7.2. MsSql image (localhost,1445)](#72-mssql-image-localhost1445)
+  - [7.3. Jenkins image](#73-jenkins-image)
+  - [7.4. Gitlab image](#74-gitlab-image)
+- [8. Extras](#8-extras)
 
-## 1. Instalation in Windows 10
+## 1. Whats is containers and docker?
+
+### 1.1. Docker
+
+- Docker is an open platform for developing, shipping, and running applications. Docker provides to separate your applications from your infrastructure so you can deliver software quickly.
+
+#### 1.1.1. Advantages of Docker
+
+- Methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+- Docker provides for automating the deployment of applications as portable, self-sufficient containers that can run on the cloud or on-premises.
+- Docker containers can run anywhere, in your local computer to the cloud.
+- Docker image containers can run natively on Linux and Windows.
+
+### 1.2. Container
+
+- A container is a standard unit of software that packages up code and all its dependencies so, the application runs quickly and reliably from one computing environment to another.
+- A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application.
+
+## 2. Instalation in Windows 10
+
 - Enable WSL in Windows 10
   - ![Enable WSL in Windows 10](Images/EnableWSLWindows10.png)
 - Update wsl to wsl2
   - wsl --update
 
-## 2. Docker commands
+## 3. Docker commands
+
 - All informations about docker in the machine
   - docker info
 - Show the Docker version information
@@ -43,7 +68,7 @@
   - docker stop `<container_name>`
 - Create and run the container, this command eliminates the need to run `docker create` and then `docker start`
   - docker run `<image_name>` # Example docker run hello-world
-  - docker run -d `<image_name>` # Run container in background and print container ID 
+  - docker run -d `<image_name>` # Run container in background and print container ID
   - docker run -it --rm `<image_name>` # Run and delete the container when the container stops
 - Remove image
   - docker image rm `<image_name>` or `<image_id>` # Example docker image rm hello-world:latest
@@ -61,14 +86,17 @@
 - Build Dockerfile
   - docker build .
 
-## 3. Dockerfile structure
+## 4. Dockerfile structure
+
 - `FROM` # Fully qualified Docker container image name
 - `COPY` # Copy the specified folder on your computer to a folder in the container
 - `WORKDIR` # Changes the current directory inside of the container to App
 - `ENTRYPOINT` # Tells Docker to configure the container to run as an executable
 
-## 4. Docker compose
-### 4.1. Commands Docker Compose
+## 5. Docker compose
+
+### 5.1. Commands Docker Compose
+
 - All informations about docker compose in the machine
   - docker-compose version
 - Create/Recreate and start containers, use docker-compose.yml
@@ -79,7 +107,7 @@
   - docker-compose start
 - Stop all containers
   - docker-compose stop
-- Docker 
+- Docker
   - compose-build
 - Remove all containers and images
   ```
@@ -89,7 +117,8 @@
   docker rmi -f $(docker images -a -q)
   ```
 
-### 4.2. Docker Compose template
+### 5.2. Docker Compose template
+
 ```
 version: '3'
 services:
@@ -103,36 +132,43 @@ services:
     networks:
       - net
 networks:
-  net: 
+  net:
 ```
 
-## 5. Access Docker using REST API or Expose docker remotely
+## 6. Access Docker using REST API or Expose docker remotely
+
 1. ps -ef | grep docker
 2. sudo nano /lib/systemd/system/docker.service
-3. Replace line ExecStart=*** to ExecStart=/usr/bin/dockerd -H fd:// -H=tcp://0.0.0.0:2375
+3. Replace line ExecStart=\*\*\* to ExecStart=/usr/bin/dockerd -H fd:// -H=tcp://0.0.0.0:2375
 4. sudo systemctl daemon-reload
 5. sudo service docker restart
 6. Test with url http://address:2375/images/json or http://address:2375/containers/json
 
-## 6. Docker images
-### 6.1. RabbitMQ image (http://localhost:15672/)
+## 7. Docker images
+
+### 7.1. RabbitMQ image (http://localhost:15672/)
+
 - docker pull rabbitmq:3-management
 - docker run -d -p 15672:15672 -p 5672:5672 --name rabbit_dev rabbitmq:3-management
 - docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq_dev rabbitmq:3.9-management
 - Default user and password: guest/guest
 
-### 6.2. MsSql image (localhost,1445)
+### 7.2. MsSql image (localhost,1445)
+
 - docker pull mcr.microsoft.com/mssql/server:2019-latest
 - docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" --name ordermssql -p 1445:1433 mcr.microsoft.com/mssql/server:2019-latest
 
-### 6.3. Jenkins image
+### 7.3. Jenkins image
+
 - docker pull jenkins/jenkins
 - docker run -p 8080:8080 jenkins/jenkins -- name jenkins_dev
 
-### 6.4. Gitlab image
+### 7.4. Gitlab image
+
 - sudo docker exec -it gitlab_dev grep 'Password:' /etc/gitlab/initial_root_password
 - sudo gitlab-rake "gitlab:password:reset[root]"
 
-## 7. Extras
+## 8. Extras
+
 - Specific command to dotnet applications
   - docker build -f API\Dockerfile . -t api
