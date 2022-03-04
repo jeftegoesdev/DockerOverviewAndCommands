@@ -14,11 +14,12 @@
   - [5.2. Docker Compose template](#52-docker-compose-template)
 - [6. Access Docker using REST API or Expose docker remotely](#6-access-docker-using-rest-api-or-expose-docker-remotely)
 - [7. Docker images](#7-docker-images)
-  - [7.1. RabbitMQ image (http://localhost:15672/)](#71-rabbitmq-image-httplocalhost15672)
-  - [7.2. MsSql image (localhost,1445)](#72-mssql-image-localhost1445)
-  - [7.3. Jenkins image](#73-jenkins-image)
-  - [7.4. Gitlab image](#74-gitlab-image)
-  - [MongoDb image](#mongodb-image)
+  - [7.1. RabbitMQ (http://localhost:15672/)](#71-rabbitmq-httplocalhost15672)
+  - [7.2. MsSql (localhost,1445)](#72-mssql-localhost1445)
+  - [7.3. Jenkins](#73-jenkins)
+  - [7.4. Gitlab](#74-gitlab)
+  - [7.5. MongoDb](#75-mongodb)
+  - [7.6. Redis](#76-redis)
 - [8. Extras](#8-extras)
 
 ## 1. Whats is docker anb containers?
@@ -69,7 +70,8 @@
   - docker stop `<container_name>`
 - Create and run the container, this command eliminates the need to run `docker create` and then `docker start`
   - docker run `<image_name>` # Example docker run hello-world
-  - docker run -d `<image_name>` # Run container in background and print container ID
+  - docker run -d `<image_name>` # -d Detach, run container in background and print container ID
+  - docker run -d -p `<external_port:internal_docker_port>` `<image_name>`
   - docker run -it --rm `<image_name>` # Run and delete the container when the container stops
 - Remove image
   - docker image rm `<image_name>` or `<image_id>` # Example docker image rm hello-world:latest
@@ -80,7 +82,7 @@
 - Fetch the logs of a container
   - docker logs -f `<image_name>` # Log live
 - Run a command in a running container
-  - docker exec -it `<container_name>` bash # -ti --interactive and --tty
+  - docker exec -it `<container_name>` bash # -it --interactive and --tty
   - docker exec -it -u root `<container_name>` bash # With user root
 - Copy files/folders between a container and the local filesystem
   - docker cp `<file_name>` `<container_name>`:`<path>`/`<file_name>` # Example: docker cp script.sh myContainer:/tmp/script.sh
@@ -147,33 +149,38 @@ networks:
 
 ## 7. Docker images
 
-### 7.1. RabbitMQ image (http://localhost:15672/)
+### 7.1. RabbitMQ (http://localhost:15672/)
 
 - docker pull rabbitmq:3-management
 - docker run -d -p 15672:15672 -p 5672:5672 --name rabbit_dev rabbitmq:3-management
 - docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq_dev rabbitmq:3.9-management
 - Default user and password: guest/guest
 
-### 7.2. MsSql image (localhost,1445)
+### 7.2. MsSql (localhost,1445)
 
 - docker pull mcr.microsoft.com/mssql/server:2019-latest
 - docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" --name ordermssql -p 1445:1433 mcr.microsoft.com/mssql/server:2019-latest
 
-### 7.3. Jenkins image
+### 7.3. Jenkins
 
 - docker pull jenkins/jenkins
 - docker run -p 8080:8080 jenkins/jenkins -- name jenkins_dev
 
-### 7.4. Gitlab image
+### 7.4. Gitlab
 
 - sudo docker exec -it gitlab_dev grep 'Password:' /etc/gitlab/initial_root_password
 - sudo gitlab-rake "gitlab:password:reset[root]"
 
-### MongoDb image
+### 7.5. MongoDb
 
 - docker pull mongo
 - docker run -d -p 27017:27017 --name mongo_dev mongo
 - docker exec -it mongo_dev bash
+
+### 7.6. Redis
+
+- docker pull redis
+- docker run -d -p 6379:6379 --name redis_dev redis
 
 ## 8. Extras
 
