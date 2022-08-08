@@ -24,32 +24,32 @@
   - [7.7. PostgreSql](#77-postgresql)
 - [8. Extras](#8-extras)
 
-## 1. Whats is docker anb containers?
+# 1. Whats is docker anb containers?
 
-### 1.1. Docker
+## 1.1. Docker
 
 - Docker is an open platform for developing, shipping, and running applications. Docker provides to separate your applications from your infrastructure so you can deliver software quickly.
 
-#### 1.1.1. Advantages of Docker
+### 1.1.1. Advantages of Docker
 
 - Methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 - Docker provides for automating the deployment of applications as portable, self-sufficient containers that can run on the cloud or on-premises.
 - Docker containers can run anywhere, in your local computer to the cloud.
 - Docker image containers can run natively on Linux and Windows.
 
-### 1.2. Container
+## 1.2. Container
 
 - A container is a standard unit of software that packages up code and all its dependencies so, the application runs quickly and reliably from one computing environment to another.
 - A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application.
 
-## 2. Instalation in Windows 10
+# 2. Instalation in Windows 10
 
 - Enable WSL in Windows 10
   - ![Enable WSL in Windows 10](Images/EnableWSLWindows10.png)
 - Update wsl to wsl2
   - wsl --update
 
-## 3. Docker commands
+# 3. Docker commands
 
 - All informations about docker in the machine
   - docker info
@@ -91,16 +91,16 @@
 - Build Dockerfile
   - docker build .
 
-## 4. Dockerfile structure
+# 4. Dockerfile structure
 
 - `FROM` # Fully qualified Docker container image name
 - `COPY` # Copy the specified folder on your computer to a folder in the container
 - `WORKDIR` # Changes the current directory inside of the container to App
 - `ENTRYPOINT` # Tells Docker to configure the container to run as an executable
 
-## 5. Docker compose
+# 5. Docker compose
 
-### 5.1. Commands Docker Compose
+## 5.1. Commands Docker Compose
 
 - All informations about docker compose in the machine
   - docker-compose version
@@ -122,7 +122,7 @@
   docker rmi -f $(docker images -a -q)
   ```
 
-### 5.2. Docker Compose template
+## 5.2. Docker Compose template
 
 ```
 version: '3'
@@ -140,7 +140,7 @@ networks:
   net:
 ```
 
-## 6. Access Docker using REST API or Expose docker remotely
+# 6. Access Docker using REST API or Expose docker remotely
 
 1. ps -ef | grep docker
 2. sudo nano /lib/systemd/system/docker.service
@@ -149,49 +149,50 @@ networks:
 5. sudo service docker restart
 6. Test with url http://address:2375/images/json or http://address:2375/containers/json
 
-## 7. Docker images
+# 7. Docker images
 
-### 7.1. RabbitMQ (http://localhost:15672/)
+## 7.1. RabbitMQ (http://localhost:15672/)
 
 - docker pull rabbitmq:3-management
 - docker run -d -p 15672:15672 -p 5672:5672 --name rabbit_dev rabbitmq:3-management
 - docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq_dev rabbitmq:3.9-management
 - Default user and password: guest/guest
 
-### 7.2. MsSql (localhost,1445)
+## 7.2. MsSql (localhost,1445)
 
 - docker pull mcr.microsoft.com/mssql/server:2019-latest
 - docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" --name ordermssql -p 1445:1433 mcr.microsoft.com/mssql/server:2019-latest
 
-### 7.3. Jenkins
+## 7.3. Jenkins
 
 - docker pull jenkins/jenkins
 - docker run -p 8080:8080 jenkins/jenkins -- name jenkins_dev
 
-### 7.4. Gitlab
+## 7.4. Gitlab
 
 - sudo docker exec -it gitlab_dev grep 'Password:' /etc/gitlab/initial_root_password
 - sudo gitlab-rake "gitlab:password:reset[root]"
 
-### 7.5. MongoDb
+## 7.5. MongoDb
 
 - docker pull mongo
 - docker run -d -p 27017:27017 --name mongo_dev mongo
 - docker exec -it mongo_dev bash
 
-#### 7.5.1. Web client MongoDb
- - docker pull mongoclient/mongoclient
+### 7.5.1. Web client MongoDb
 
-### 7.6. Redis
+- docker pull mongoclient/mongoclient
+
+## 7.6. Redis
 
 - docker pull redis
 - docker run -d -p 6379:6379 --name redis_dev redis
 
-### 7.7. PostgreSql
+## 7.7. PostgreSql
 
 - docker run --name postgres_dev -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
-## 8. Extras
+# 8. Extras
 
 - Specific command to dotnet applications
   - docker build -f API\Dockerfile . -t api
