@@ -22,7 +22,9 @@
     - [7.5.1. Web client MongoDb](#751-web-client-mongodb)
   - [7.6. Redis](#76-redis)
   - [7.7. PostgreSql](#77-postgresql)
-- [8. Extras](#8-extras)
+- [8. Grafana](#8-grafana)
+- [9. Graphite / Statds](#9-graphite--statds)
+- [10. Extras](#10-extras)
 
 # 1. Whats is docker anb containers?
 
@@ -192,7 +194,15 @@ networks:
 
 - docker run --name postgres_dev -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
-# 8. Extras
+# 8. Grafana
+
+- docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+# 9. Graphite / Statds
+
+- docker run -d --name graphite --restart=always -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126 graphiteapp/graphite-statsd
+
+# 10. Extras
 
 - Specific command to dotnet applications
   - docker build -f API\Dockerfile . -t api
