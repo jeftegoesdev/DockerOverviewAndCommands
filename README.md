@@ -2,7 +2,7 @@
 
 ## Contents <!-- omit in toc -->
 
-- [1. Whats is docker anb containers?](#1-whats-is-docker-anb-containers)
+- [1. Whats is docker and containers?](#1-whats-is-docker-and-containers)
   - [1.1. Docker](#11-docker)
     - [1.1.1. Advantages of Docker](#111-advantages-of-docker)
   - [1.2. Container](#12-container)
@@ -26,11 +26,22 @@
 - [9. Graphite / Statds](#9-graphite--statds)
 - [10. Extras](#10-extras)
 
-# 1. Whats is docker anb containers?
+# 1. Whats is docker and containers?
 
 ## 1.1. Docker
 
-- Docker is an open platform for developing, shipping, and running applications. Docker provides to separate your applications from your infrastructure so you can deliver software quickly.
+- Docker is an open platform for developing, shipping, and running applications.
+- Docker provides to separate your applications from your infrastructure so you can deliver software quickly.
+- Docker is a software development platform to deploy apps.
+- Apps are packaged in containers that can be run on any OS.
+- Apps run the same, regardless of where they're run:
+  - Any machine.
+  - No compatibility issues.
+  - Predictable behavior.
+  - Less work.
+  - Easier to maintain and deploy.
+  - Works with any language, any OS, any technology.
+- Use cases: microservices architecture, lift-and-shift apps from on-premises to the AWS cloud, ...
 
 ### 1.1.1. Advantages of Docker
 
