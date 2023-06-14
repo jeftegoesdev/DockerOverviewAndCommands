@@ -121,6 +121,7 @@
   - docker-compose up -d
 - Build or rebuild services
   - docker-compose build
+  - docker-compose build `<name_service>` # Build specific image.
 - Starts existing containers for a service.
   - docker-compose start
 - Stop all containers
