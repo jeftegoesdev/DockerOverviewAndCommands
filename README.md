@@ -217,4 +217,5 @@ networks:
 # 10. Extras
 
 - Specific command to dotnet applications
-  - docker build -f API\Dockerfile . -t api
+  - docker build -f API\Dockerfile . -t `<image_name>`
+  - docker run -p 500:80 -t `<image_name>`
