@@ -110,6 +110,28 @@
 - `COPY` # Copy the specified folder on your computer to a folder in the container
 - `WORKDIR` # Changes the current directory inside of the container to App
 - `ENTRYPOINT` # Tells Docker to configure the container to run as an executable
+- Example of Dockerfile example to build a dotnet project.
+
+  ```
+    FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+
+    WORKDIR /my_custom_path_build_env
+    COPY . ./
+
+    # Run this command to see result of commands ls... docker build --no-cache --progress plain .
+    RUN echo $(ls)
+    RUN dotnet restore
+    RUN dotnet publish -c Release -o publish
+    RUN echo $(ls ./publish)
+
+    FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS stage-env
+    WORKDIR /my_custom_path_stage_env
+    COPY --from=build-env /my_custom_path_build_env/publish .
+    RUN echo $(ls)
+
+    EXPOSE 80
+    ENTRYPOINT ["dotnet", "My.dll"]
+  ```
 
 # 5. Docker compose
 
@@ -219,3 +241,4 @@ networks:
 - Specific command to dotnet applications
   - docker build -f API\Dockerfile . -t `<image_name>`
   - docker run -p 500:80 -t `<image_name>`
+  - docker build --no-cache --progress plain .
