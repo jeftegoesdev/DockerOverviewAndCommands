@@ -141,6 +141,7 @@
   - docker-compose version
 - Create/Recreate and start containers, use docker-compose.yml
   - docker-compose up -d
+  - docker-compose up -d `<name_service>`
 - Build or rebuild services
   - docker-compose build
   - docker-compose build `<name_service>` # Build specific image.
@@ -152,10 +153,10 @@
   - compose-build
 - Remove all containers and images
   ```
-  docker-compose down
-  docker rm -f $(docker ps -a -q)
-  docker volume rm $(docker volume ls -q)
-  docker rmi -f $(docker images -a -q)
+    docker-compose down
+    docker rm -f $(docker ps -a -q)
+    docker volume rm $(docker volume ls -q)
+    docker rmi -f $(docker images -a -q)
   ```
 
 ## 5.2. Docker Compose template
