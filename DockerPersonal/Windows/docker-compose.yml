@@ -8,7 +8,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - V:/jenkins_home:/var/jenkins_home
+      - F:/DockerVolumes/jenkins_home:/var/jenkins_home
     networks:
       - net
   rabbitmq:
@@ -18,7 +18,7 @@ services:
       - 15672:15672
       - 5672:5672
     volumes:
-      - V:/rabbitmq_home:/var/rabbitmq_home
+      - F:/DockerVolumes/rabbitmq_home:/var/rabbitmq_home
     networks:
       - net
   mssql:
@@ -30,7 +30,7 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - V:/mssql_home:/var/mssql_home
+      - F:/DockerVolumes/mssql_home:/var/mssql_home
     networks:
       - net
   mysql:
@@ -38,7 +38,7 @@ services:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - V:/mysql_home:/var/lib/mysql
+      - F:/DockerVolumes/mysql_home:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: Master@123
     ports:
@@ -51,7 +51,7 @@ services:
     ports:
       - 5341:80
     volumes:
-      - V:/seq_home:/var/seq_home
+      - F:/DockerVolumes/seq_home:/var/seq_home
     environment:
       - ACCEPT_EULA=Y
     networks:
@@ -60,8 +60,8 @@ services:
     container_name: zookeeper_dev
     image: confluentinc/cp-zookeeper:latest
     volumes: 
-      - V:/zookeeper_home/data:/var/lib/zookeeper/data
-      - V:/zookeeper_home/log:/var/lib/zookeeper/log
+      - F:/DockerVolumes/zookeeper_home/data:/var/lib/zookeeper/data
+      - F:/DockerVolumes/zookeeper_home/log:/var/lib/zookeeper/log
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -84,7 +84,7 @@ services:
     ports:
       - 9092:9092
     volumes:
-      - V:/kafka_home:/var/lib/kafka
+      - F:/DockerVolumes/kafka_home:/var/lib/kafka
     networks: 
       - net
   grafana:
@@ -93,7 +93,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - V:/grafana_home:/var/lib/grafana
+      - F:/DockerVolumes/grafana_home:/var/lib/grafana
     networks:
       - net
   prometheus:
@@ -102,9 +102,9 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - V:/prometheus_home:/etc/prometheus/
+      - F:/DockerVolumes/prometheus_home:/etc/prometheus/
       # You need to place prometheus.yml file in the folder.
-      - V:/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - F:/DockerVolumes/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     networks:
@@ -133,7 +133,7 @@ services:
       - 8888:8888
     restart: always
     volumes:
-      - V:/glue_jupyter:/home/glue_user/.aws
-      - V:/glue_jupyter_workspace/:/home/glue_user/workspace/jupyter_workspace/
+      - F:/DockerVolumes/glue_jupyter:/home/glue_user/.aws
+      - F:/DockerVolumes/glue_jupyter_workspace/:/home/glue_user/workspace/jupyter_workspace/
 networks:
   net:
