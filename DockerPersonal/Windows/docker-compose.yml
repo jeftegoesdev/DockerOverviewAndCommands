@@ -21,7 +21,7 @@ services:
       - F:/DockerVolumes/rabbitmq_home:/var/rabbitmq_home
     networks:
       - net
-  mssql:
+  mssql: # Database
     container_name: mssql_dev
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
@@ -33,7 +33,7 @@ services:
       - F:/DockerVolumes/mssql_home:/var/mssql_home
     networks:
       - net
-  mysql:
+  mysql: # Database
     container_name: mysql_dev
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -135,5 +135,17 @@ services:
     volumes:
       - F:/DockerVolumes/glue_jupyter:/home/glue_user/.aws
       - F:/DockerVolumes/glue_jupyter_workspace/:/home/glue_user/workspace/jupyter_workspace/
+  mongodb: # Database
+    container_name: mongo_dev
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: Master123456
+    ports:
+      - 27017:27017
+    volumes:
+      - F:/DockerVolumes/mongo_data:/data/db
+    networks:
+      - net
 networks:
   net:
