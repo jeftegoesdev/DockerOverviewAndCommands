@@ -19,7 +19,6 @@
   - [7.3. Jenkins](#73-jenkins)
   - [7.4. Gitlab](#74-gitlab)
   - [7.5. MongoDb](#75-mongodb)
-    - [7.5.1. Web client MongoDb](#751-web-client-mongodb)
   - [7.6. Redis](#76-redis)
   - [7.7. PostgreSql](#77-postgresql)
 - [8. Grafana](#8-grafana)
@@ -215,10 +214,6 @@ networks:
 - docker pull mongo
 - docker run -d -p 27017:27017 --name mongo_dev mongo
 - docker exec -it mongo_dev bash
-
-### 7.5.1. Web client MongoDb
-
-- docker pull mongoclient/mongoclient
 
 ## 7.6. Redis
 

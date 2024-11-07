@@ -36,9 +36,9 @@ services:
   mysql: # Database
     container_name: mysql_dev
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     volumes:
-      - F:/DockerVolumes/mysql_home:/var/lib/mysql
+      - F:/DockerVolumes/mysql_home:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: Master@123
     ports:
@@ -147,5 +147,15 @@ services:
       - F:/DockerVolumes/mongo_data:/data/db
     networks:
       - net
+  postgresql:
+    container_name: postgresql_dev
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - F:/DockerVolumes/postgresql_home:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Master@123
 networks:
   net:
