@@ -85,7 +85,7 @@
 - Create and run the container, this command eliminates the need to run `docker create` and then `docker start`
   - docker run `<image_name>` # Example docker run hello-world
   - docker run -d `<image_name>` # -d Detach, run container in background and print container ID
-  - docker run -d -p `<external_port:internal_docker_port>` `<image_name>`
+  - docker run -d -p `<external_port:internal_docker_port>` `<image_name> or <tag_name>`
   - docker run -it --rm `<image_name>` # Run and delete the container when the container stops
 - Remove image
   - docker image rm `<image_name>` or `<image_id>` # Example docker image rm hello-world:latest
@@ -102,6 +102,7 @@
   - docker cp `<file_name>` `<container_name>`:`<path>`/`<file_name>` # Example: docker cp script.sh myContainer:/tmp/script.sh
 - Build Dockerfile
   - docker build .
+  - docker build --tag `<tag_name>` .
 
 # 4. Dockerfile structure
 
