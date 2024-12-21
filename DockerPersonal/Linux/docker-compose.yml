@@ -30,8 +30,30 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - "/home/mssql_home:/var/mssql_home"
+      - "/mnt/development/docker-volumes/mssql_home:/var/mssql_home"
     networks:
       - net
+  mysql:
+    container_name: mysql_dev
+    image: mysql
+    restart: always
+    volumes:
+      - /mnt/development/docker-volumes/mysql_home:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: Master@123
+    ports:
+      - 3306:3306
+    networks:
+      - net
+  postgresql:
+    container_name: postgresql_dev
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - /mnt/development/docker-volumes/postgresql_home:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Master@123
 networks:
   net:
