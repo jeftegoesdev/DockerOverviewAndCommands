@@ -103,6 +103,7 @@
 - Build Dockerfile
   - docker build .
   - docker build --tag `<tag_name>` .
+  - docker build -t `<tag_name>` --no-cache --progress plain . # To "Debug..."
 
 # 4. Dockerfile structure
 
